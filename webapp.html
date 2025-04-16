@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wokrout music/ reels</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #fff;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      color: #1db954;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .gallery img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: transform 0.2s, border 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      border: 3px solid #1db954;
+    }
+
+    .reel-card {
+      background: #222;
+      width: 320px;
+      margin: 1rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    .info {
+      padding: 0.8rem 1rem;
+    }
+
+    .status {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #1db954;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html">Resume page</a>
+  <h1>🔥 Gym music and fire videos</h1>
+  <div class="gallery">
+    <a>Spotify</a>
+    <a href="https://open.spotify.com/artist/6qxpnaukVayrQn6ViNvu9I" target="_blank">
+      <img src="img/BigXwithhat.png" alt="BigX 1">
+    </a>
+    <a>Instagram</a>
+    <a href="https://www.instagram.com/bigxthaplug/" target="_blank">
+      <img src="img/Big X.jpg" alt="BigX 2">
+    </a>
+    <a>Youtube</a>
+    <a href="https://www.youtube.com/channel/UCEJdOGwm6CNtc_kIa_Qjy6A" target="_blank">
+      <img src="img/BigXwjacket.png" alt="BigX 3">
+    </a>
+  </div>
+
+  <div class="reel-card">
+    <iframe width="100%" height="315"
+    src="https://www.youtube.com/embed/N2o13tyipWM"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+    </iframe>
+    <div class="info">
+      <strong>“Benching 315 🔥”</strong><br>
+    </div>
+  </div>
+
+  <div class="reel-card">
+    <iframe width="100%" height="315"
+    src="https://www.youtube.com/embed/vumAmg3eYK4"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+    <div class="info">
+      <strong>“Deadlifting 1000 lbs”</strong><br>
+    </div>
+  </div>
+  <div class="status" id="statusMessage">Click a reel to watch it.</div>
+
+  <script>
+    const status = document.getElementById('statusMessage');
+    const videos = document.querySelectorAll('video');
+
+    videos.forEach((vid) => {
+      vid.addEventListener('play', () => {
+        status.textContent = `▶️ Watching reel: "${vid.nextElementSibling.innerText.split("”")[0]}”`;
+      });
+      vid.addEventListener('pause', () => {
+        status.textContent = `⏸️ Paused: "${vid.nextElementSibling.innerText.split("”")[0]}”`;
+      });
+      vid.addEventListener('ended', () => {
+        status.textContent = `✅ Reel "${vid.nextElementSibling.innerText.split("”")[0]}” is over.`;
+      });
+    });
+  </script>
+
+</body>
+</html>

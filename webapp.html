@@ -114,6 +114,25 @@
   </div>
   <div class="status" id="statusMessage">Click a reel to watch it.</div>
 
+  <div style="margin: 2rem 0;">
+    <label for="liftType">Choose your lift:</label>
+    <select id="liftType">
+      <option value="">--Select a lift--</option>
+      <option value="squat">Back Squat</option>
+      <option value="bench">Bench Press</option>
+      <option value="deadlift">Deadlift</option>
+      <option value="incline">Incline DB Bench</option>
+      <option value="cablerows">Cable Rows</option>
+      <option value="lateralraises">Lateral Raises</option>
+      <option value="skullcrushers">Skull Crushers</option>
+      <option value="shoulder">Shoulder Press</option>
+      <option value="lunges">Walking Lunges</option>
+    </select>
+    
+  </div>
+  
+  <div id="songInfo" class="info" style="text-align: center;"></div>
+  
   <script>
     const status = document.getElementById('statusMessage');
     const videos = document.querySelectorAll('video');
@@ -129,7 +148,63 @@
         status.textContent = `✅ Reel "${vid.nextElementSibling.innerText.split("”")[0]}” is over.`;
       });
     });
+    const liftSelector = document.getElementById("liftType");
+const songInfo = document.getElementById("songInfo");
+
+const liftSongs = {
+  squat: {
+    name: "Rapstar by Polo G",
+    link: "https://open.spotify.com/track/7bnniUFU8K59U2qBzX6yxO"
+  },
+  bench: {
+    name: "Wolves by Big Sean and Post Malone",
+    link: "https://open.spotify.com/track/33gwZOGJWEZ7dRWPqPxBEZ"
+  },
+  deadlift: {
+    name: "Fast by Juice WRLD",
+    link: "https://open.spotify.com/track/5WQrDB34o6M8V0jxNiX6RU"
+  },
+  incline: {
+    name: "TV Off by Kendrick Lamar",
+    link: "https://open.spotify.com/track/0aB0v4027ukVziUGwVGYpG"
+  },
+  cablerows: {
+    name: "The Largest by BigXthaplug",
+    link: "https://open.spotify.com/track/5snzv7zPQ3uPv7X5PI3Cjs"
+  },
+  lateralraises: {
+    name: "Blink Twice by Shaboozey and Myles Smith",
+    link: "https://open.spotify.com/track/0oyYKXNN43dtMUlQmThOyb"
+  },
+  skullcrushers: {
+    name: "Antidote by Travis Scott",
+    link: "https://open.spotify.com/track/2g0UUMfIpY20r5wXfA7M4K"
+  },
+  shoulder: {
+    name: "Not Like Us by Kendrick Lamar",
+    link: "https://open.spotify.com/track/4Ij0M2nTicF8r4x1xRyJXz"
+  },
+  lunges: {
+    name: "Back on my BS by BigXthaplug",
+    link: "https://open.spotify.com/track/2KXKQFvUplBtFRP6n93kIt"
+  }
+};
+
+liftSelector.addEventListener("change", () => {
+  const lift = liftSelector.value;
+  if (liftSongs[lift]) {
+    songInfo.innerHTML = `
+      🔊 Recommended Song: <strong>${liftSongs[lift].name}</strong><br>
+      <a href="${liftSongs[lift].link}" target="_blank">Listen on Spotify</a>
+    `;
+  } else {
+    songInfo.innerHTML = "";
+  }
+});
+
+
   </script>
+
 
 </body>
 </html>
